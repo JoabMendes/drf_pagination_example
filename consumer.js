@@ -8,7 +8,7 @@ function load_products(offset = 0, products_per_page = 10) {
         },
         dataType: 'json',
         success: function(data) {
-            alert(data)
+            console.log(data)
             /*
             data = [
                 {

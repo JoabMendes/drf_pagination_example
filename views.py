@@ -23,11 +23,14 @@ class ProductSearchAPIView(APIView):
             offset = int(request.data.get('offset'))
         if 'products_per_page' in request.data:
             products_per_page = int(request.data['products_per_page']
-
+        # First getting all products
         all_products = Product.objects.all()
         if all_products:
+            # Using list slicing to create the page itens
             paginated_products = all_products[offset:(offset+products_per_page)]
+            # Serializing my itens
             serializer = ProductSerializer(paginated_products, many=True)
+            # Returning the response data
             return Response(serializer.data)
         else:
             return Response([])
